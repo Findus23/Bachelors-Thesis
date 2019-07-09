@@ -38,11 +38,12 @@ british, % language of the document
 
 % properly format 
 \usepackage{siunitx}
+\DeclareSIUnit{\nothing}{\relax}
 \sisetup{
 	per-mode=fraction, % create a fraction instead of km h^-1
 %	locale=DE,
 	locale=US,
-	output-decimal-marker = {.}, % usefull even for German
+	output-decimal-marker = {.}, % useful even for German
 	separate-uncertainty = true,
 	quotient-mode=fraction
 }
@@ -78,7 +79,7 @@ british, % language of the document
 
 \PassOptionsToPackage{hyphens}{url}\usepackage[
 	backend=biber,
-	style=authoryear, % choose a style from https://de.overleaf.com/learn/latex/Biblatex_citation_styles
+	style=authoryear-comp, % choose a style from https://de.overleaf.com/learn/latex/Biblatex_citation_styles
 	%sortlocale=de_AT,
 	sortlocale=en_GB,
 	backref=true % use if you like it -- puts a link to the page where it is cited into the bibliography
