@@ -97,7 +97,7 @@ This ran on the \texttt{amanki} server using a \texttt{Nvidia GTX 1080} taking a
 
 \section{Post-Processing}
 
-After the simulation the properties of the SPH particles needs to be analyzed. For this the \texttt{identify\_fragments} C program by Christoph Burger\todo{better citation} uses a friends-of-friends algorithm to group the particles into fragments. Afterwards \texttt{calc\_aggregates}
+After the simulation the properties of the SPH particles needs to be analyzed. For this the \texttt{identify\_fragments} C program by Christoph Burger\todo{better citation} uses a friends-of-friends algorithm to group the particles into fragments. Afterwards \texttt{calc\_aggregates} calculates the mass of the two largest fragments together with their gravitationally bound fragments and it's output is written into a simple text file (\texttt{aggregates.txt}). This way the mass retention (total mass of the two largest fragments compared to total mass of projectile and target) and the water retention can be determined for every simulation result.
 
 
 \section{More text}
