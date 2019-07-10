@@ -39,16 +39,16 @@ To understand how the water transport works exactly one has to find an estimatio
 
 \section{Model}
 
-For a realistic model of two gravitationally colliding bodies the SPH (smooth particle hydrodynamics) code \texttt{miluphCUDA} as explained in \cite{Schaefer2016} is used. It is able to simulate brittle failure and the interaction between multiple materials. 
+For a realistic model of two gravitationally colliding bodies the SPH (smooth particle hydrodynamics) code \texttt{miluphCUDA} as explained in \cite{Schaefer2016} is used. It is able to simulate brittle failure and the interaction between multiple materials and 
 
-In the simulation two celestrial bodies are placed far enough apart so that tidal forces can affect the collision. Both objects consist of a core with the physical properties of basalt rocks and a outer mantle made of water ice. 
+In the simulation two celestial bodies are placed far enough apart so that tidal forces can affect the collision. Both objects consist of a core with the physical properties of basalt rocks and a outer mantle made of water ice. 
 
 To keep the simulation time short and make it possible to do many simulations with varying parameters 20k SPH particles are used\todo{Why 20k?} and each simulation is ran for 300 timesteps of each \SI{144}{\second} so that a whole day of collision is simulated.
 
 
 \section{Parameters}
 
-Six parameters have been identified that have an influence on how the result of the simulation
+Six parameters have been identified that have an influence on the result of the simulation.
 
 \subsection{impact velocity}
 
@@ -100,32 +100,11 @@ This ran on the \texttt{amanki} server using a \texttt{Nvidia GTX 1080} taking a
 After the simulation the properties of the SPH particles needs to be analyzed. For this the \texttt{identify\_fragments} C program by Christoph Burger\todo{better citation} uses a friends-of-friends algorithm to group the particles into fragments. Afterwards \texttt{calc\_aggregates} calculates the mass of the two largest fragments together with their gravitationally bound fragments and it's output is written into a simple text file (\texttt{aggregates.txt}). This way the mass retention (total mass of the two largest fragments compared to total mass of projectile and target) and the water retention can be determined for every simulation result.
 
 
-\section{More text}
+\chapter{Results}
 
-\lipsum[2-5]
-
-
-
-\begin{itemize}
-\setlength\itemsep{-0.5em}
-\item test
-\item more test
-\end{itemize}
-
-See Chapter  \ref{introduction}.
-
-
-\section{An equation}
-
-\begin{align}
-	a&=\sqrt{4} \\
-	b&=a^2
-\end{align}
-
-% ----------------------------------------------------------
-
+\section{Interpolations}
 \appendix
-\chapter{Some data}
+\chapter{Placeholder}
 
 \lipsum[1]\footcite{Schaefer2016}\footcite{dvorakMoon}\footcite{MaindlSummary}\footcite{Burger2018}\footcite{Dorninger}\footcite{CollisionParameters}\footcite{CollisionTypes}
 
