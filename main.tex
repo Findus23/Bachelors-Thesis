@@ -102,7 +102,46 @@ After the simulation the properties of the SPH particles needs to be analyzed. F
 
 \chapter{Results}
 
-\section{Interpolations}
+\chapter{Interpolations}
+
+\section{Linear interpolation}
+
+\subsection{Theory}
+
+One of the easiest ways to interpolate a new value between two known values is linear interpolation. \todo{some more text about linear interpolation}
+
+In one dimension linear interpolation is pretty trivial. For example if we assume that we have 20 random points $P$ between 0 and 1 (red and blue in \ref{fig:one-dim-interpolation}) and have a new point $I$ at $0.4$ for which we want to interpolate (green). Finding the two closest points above and below is trivial as there is only one dimension to compare. Now if for every of these points we have measured a value $f(P)$ a straight line between the two closest values can be drawn (light green) and a interpolated value for $f(I)$ can be found.
+
+\begin{figure}[h] % TODO: h is temporary 
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/vis1d.pdf}
+	\caption{one-dimensional example of linear interpolation}
+	\label{fig:one-dim-interpolation}
+\end{figure}
+
+In two dimensions things get more complicated as we now have a set of points with $X$ and $Y$ coordinates (Figure \ref{fig:3dinterpolate-1}). One fast way to find the closest points to the point that should be interpolated is using Delaunay triangulation. This separates the space between the points into triangles while trying to maximize their smallest angle. Afterwards the closest three points can be found very quickly by checking the nodes of the surrounding triangle  (Figure \ref{fig:3dinterpolate-2}).
+
+\todo[inline]{It might be a better idea (and maybe more correct) to add the green point to the Delaunay list and use it's neighbors as the nearest points instead of the edges of the surrounding triangle.}
+
+\begin{figure*}[h] % also temporary
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/vis2d1.pdf}
+		\caption{Lorem ipsum}
+	\label{fig:3dinterpolate-1}
+	\end{subfigure}%
+	~ 
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/vis2d2.pdf}
+		\caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
+		\label{fig:3dinterpolate-2}
+	\end{subfigure}
+	\caption{Caption place holder}
+
+\end{figure*}
+
 \appendix
 \chapter{Placeholder}
 
