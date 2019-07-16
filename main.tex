@@ -152,7 +152,7 @@ In two dimensions things get more complicated as we now have a set of points wit
 This approach has the advantage that it can be extended in more than two dimensions by replacing the triangle in the Delaunay triangulation with a n-simplex in n dimensions. The \texttt{scipy.spatial.Delaunay} python function allows to quickly calculate it thanks to the \texttt{Qhull} library\footnote{\url{http://www.qhull.org/}}. One noticeable limitation of this method is that data can't be extrapolated. Therefore the possible output is limited to the convex hull of the input parameter space (as seen in Figure \ref{fig:3dinterpolate-2}).
 
 \subsection{Implementation}
-
+\label{sec:griddata-implementation}
 For doing the actual interpolations the \texttt{scipy.interpolate.griddata} function is used with the \texttt{method="linear"} argument that itself uses \texttt{scipy.interpolate.LinearNDInterpolator} which does the interpolation as described above. The function is given a $6\times n$ matrix of the six parameters and a $n$ list of the water retention fraction for those $n$ simulations. In addition \texttt{griddata} supports not only calculating interpolations for one set of parameters, but also lists of parameters which allows to quickly generate 2d diagrams as seen in \ref{the_chapter_where_I_show_the_v_alpha_plots}.
 
 \subsection{Results}
@@ -200,7 +200,7 @@ or simply
 \begin{align}
 	\Phi\lambda=p
 \end{align}
-
+scipy.interpolate import Rbf
 with $\Phi$ being a symmetric $n \times n $ matrix as $\left\|x_j-x_i\right\|=\left\|x_i-x_j\right\|$. There are many possibilities for the radias basis function $\phi(r)$. It can be for example linear ($r$), gaussian ($e^{-r^2}$) or multiquadric ($\sqrt{\left(\frac{r}{\epsilon}\right)^2 + 1}$) with $\epsilon$ being a constant that defaults to the approximate average distance between nodes.
 
 If we for example have the three points $x_1=0$, $x_1=3$ and $x_1=5$ with $p(x_1)=0.2$, $p(x_2)=0.8$ and $p(x_3)=0.1$ and choose the gaussian RB-function\todo{looks odd} we get the following:
@@ -228,8 +228,17 @@ If we for example have the three points $x_1=0$, $x_1=3$ and $x_1=5$ with $p(x_1
 \end{bmatrix}
 \end{align}
 
-Solving this 
-%[0.19990147 0.7984116  0.08537658]
+Solving this linear matrix equation using \texttt{numpy.linalg.solve} gives us the solution for $\lambda$:
+\begin{gather}
+	\lambda=\begin{bmatrix}
+	0.200 \\0.798  \\0.085
+	\end{bmatrix}
+	\\
+	s(x)=0.200\phi(\left\|x\right\|)+
+		0.798\phi(\left\|x-3\right\|)+
+		0.085\phi(\left\|x-5\right\|)
+\end{gather}
+
 
 
 \begin{figure}[h] % also temporary
@@ -251,7 +260,14 @@ Solving this
 	
 \end{figure}
 
+Applying the same method to a list of random points allows to interpolate their values for arbitrary other points like the green point on the sinus-like curve in Figure \ref{fig:rbf-2}. This can also be trivially extended in $m$ dimensions by replacing $x$ with an $x\in\mathbb{R}^m$ and using a norm in $\mathbb{R}^m$ for $\left\|\centerdot\right\|$.
+
 \footcite{RBF}\todo{whole section?}
+
+\subsection{Implementation}
+
+The scipy function \texttt{scipy.interpolate.Rbf} allows directly interpolating a value similar to \texttt{griddata} in Section \ref{sec:griddata-implementation}. A difference in usage is that it only allows interpolating a single value, but as it is pretty quick it is possible to calculate multiple values sequentially.
+
 
 \section{Neural Networks}
 
