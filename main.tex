@@ -43,7 +43,7 @@ For a realistic model of two gravitationally colliding bodies the SPH (\textit{s
 
 In the simulation two celestial bodies are placed far enough apart so that tidal forces can affect the collision. Both objects consist of a core with the physical properties of basalt rocks and an outer mantle made of water ice. 
 
-To keep the simulation time short and make it possible to do many simulations with varying parameters 20k SPH particles are used\todo{Why 20k?} and each simulation is ran for 300 timesteps of each \SI{144}{\second} so that a whole day of collision is simulated.
+To keep the simulation time short and make it possible to do many simulations with varying parameters 20k SPH particles are used and each simulation is ran for 300 timesteps of each \SI{144}{\second} so that a whole day of collision is simulated.
 
 
 \section{Parameters}
@@ -59,9 +59,8 @@ The collision velocity $v_0$ is defined in units of the mutual escape velocity o
 The impact angle is defined in a way that $\alpha=\ang{0}$ corresponds to a head-on collision and higher angles increase the chance of a hit-and-run encounter. The simulation ranges from $\alpha=\ang{0}$ to $\alpha=\ang{60}$
 
 \subsection{target and projectile mass}
-\todo{make sure I am not mixing up target and projectile here}
 
-The masses in this simulation range from about two Ceres masses (\SI{1.88e+21}{\kilogram}) to about two earth masses (\SI{1.19e+25}{\kilogram}). In addition to the target mass $m$, the mass fraction between target and projectile $\gamma$ is defined. As the whole simulation setup is symmetrical between the two bodies only mass fractions below and equal to one have been considered.
+The masses in this simulation range from about two Ceres masses (\SI{1.88e+21}{\kilogram}) to about two earth masses (\SI{1.19e+25}{\kilogram}). In addition to the total mass $m$, the mass fraction between projectile and target $\gamma$ is defined. As the whole simulation setup is symmetrical between the two bodies only mass fractions below and equal to one have been considered.
 
 \subsection{water fraction of target and projectile}
 
@@ -97,7 +96,7 @@ This simulation run ran on the \texttt{amanki} server using a \texttt{Nvidia GTX
 
 \section{Post-Processing}
 
-After the simulation the properties of the SPH particles needs to be analyzed. To do this the \texttt{identify\_fragments} C program by Christoph Burger\todo{better citation} uses a friends-of-friends algorithm to group the final particles into fragments. Afterwards \texttt{calc\_aggregates} calculates the mass of the two largest fragments together with their gravitationally bound fragments and its output is written into a simple text file (\texttt{aggregates.txt}). This way the mass retention (total mass of the two largest fragments compared to total mass of projectile and target) and the water retention can be determined for every simulation result.
+After the simulation the properties of the SPH particles needs to be analyzed. To do this the \texttt{identify\_fragments} C program by Christoph Burger\todo{better citation} uses a friends-of-friends algorithm to group the final particles into fragments. Afterwards \texttt{calc\_aggregates} calculates the mass of the two largest fragments together with their gravitationally bound fragments and its output is written into a simple text file (\texttt{aggregates.txt}). This way, the mass retention (total mass of the two largest fragments compared to total mass of projectile and trget) and the water retention can be determined for every simulation result.
 
 \section{Resimulation}
 
@@ -118,7 +117,7 @@ To increase the amount of available data and especially reduce the errors caused
 \label{tab:resimulation-parameters}
 \end{table}
 
-This way an addition \num{427}\todo{correct number} simulations have been calculated on \texttt{Nvidia Tesla P100} graphics cards on Google Cloud.
+This way, an addition \num{427}\todo{correct number} simulations have been calculated on \texttt{Nvidia Tesla P100} graphics cards on Google Cloud.X
 
 \chapter{Results}
 
@@ -130,7 +129,7 @@ This way an addition \num{427}\todo{correct number} simulations have been calcul
 
 One of the easiest ways to interpolate a new value between two known values is linear interpolation. It takes the closest values and creates a linear function between them.
 
-In one dimension linear interpolation is pretty trivial. For example if we assume that we have 20 random points $P$ between 0 and 1 (\textcolor{Red}{\textbullet} and  \textcolor{Blue}{\textbullet} in Figure \ref{fig:one-dim-interpolation}) and have a new point $I$ \textcolor{Green}{\textbullet} at $0.4$ for which we want to interpolate. Finding the two closest points \textcolor{Red}{\textbullet} above and below is trivial as there is only one dimension to compare. Now if we have measured a value $f(P)$ for each of these points, a straight line  \textcolor{LightGreen}{\textbf{|}} between the two closest values can be drawn and an interpolated value for $f(I)$ can be found.
+In one dimension linear interpolation is pretty trivial. For example, let's assume that we have 20 random points $P$ between 0 and 1 (\textcolor{Red}{\textbullet} and  \textcolor{Blue}{\textbullet} in Figure \ref{fig:one-dim-interpolation}) and have a new point $I$ (\textcolor{Green}{\textbullet}) at $0.4$ for which we want to interpolate. Finding the two closest points \textcolor{Red}{\textbullet} above and below is trivial as there is only one dimension to compare. Now, if we have measured a value $f(P)$ for each of these points, a straight line (\textcolor{LightGreen}{\textbf{|}}) between the two closest values can be drawn and an interpolated value for $f(I)$ can be found.
 
 \begin{figure}[h] % TODO: h is temporary 
 	\centering
@@ -141,7 +140,6 @@ In one dimension linear interpolation is pretty trivial. For example if we assum
 
 In two dimensions things get more complicated as we now have a set of points with $X$ and $Y$ coordinates (Figure \ref{fig:3dinterpolate-1}). One fast way to find the closest points to the point that should be interpolated is using Delaunay triangulation. This separates the space between the points into triangles while trying to maximize their smallest angle. Afterwards the closest three points can be found very quickly by checking the nodes of the surrounding triangle  (Figure \ref{fig:3dinterpolate-2}). If we now again have a function $f(X,Y)$ similar to the one-dimensional example (Figure \ref{fig:3dinterpolate-3}), we can create a unique plain through the three points and get the interpolated value for any $X$ and $Y$ on this layer.
 
-\todo[inline]{It might be a better idea (and maybe more correct) to add the green point to the Delaunay list and use it's neighbors as the nearest points instead of the edges of the surrounding triangle.}
 
 \begin{figure}[h] % also temporary
 	\centering
@@ -169,28 +167,32 @@ In two dimensions things get more complicated as we now have a set of points wit
 	\label{fig:3dinterpolate-3}
 \end{figure}
 
-This approach has the advantage that it can be extended in more than two dimensions by replacing the triangle in the Delaunay triangulation with a n-simplex in n dimensions. The \texttt{scipy.spatial.Delaunay} python function allows to quickly calculate it thanks to the \texttt{Qhull} library\footnote{\url{http://www.qhull.org/}}. One noticeable limitation of this method is that data can't be extrapolated. Therefore the possible output is limited to the convex hull of the input parameter space (as seen in Figure \ref{fig:3dinterpolate-2}).
+This approach has the advantage that it can be extended in more than two dimensions by replacing the triangle in the Delaunay triangulation with an n-simplex in n dimensions. The \texttt{scipy.spatial.Delaunay} python function allows to quickly calculate it thanks to the \texttt{Qhull} library\footnote{\url{http://www.qhull.org/}}. One noticeable limitation of this method is that data can't be extrapolated. Therefore the possible output is limited to the convex hull of the input parameter space (as seen in Figure \ref{fig:3dinterpolate-2}).
 
 \subsection{Implementation}
 \label{sec:griddata-implementation}
-For doing the actual interpolations the \texttt{scipy.interpolate.griddata} function is used with the \texttt{method="linear"} argument which itself uses \texttt{scipy.interpolate.LinearNDInterpolator} to do the interpolation as described above. The function is given a $6\times n$ matrix of the six parameters and a $n$ list of the water retention fraction for those $n$ simulations. In addition \texttt{griddata} supports not only calculating interpolations for one set of parameters, but also lists of parameters which allows to quickly generate 2d diagrams as seen in \ref{the_chapter_where_I_show_the_v_alpha_plots}.
+For doing the actual interpolations, the \texttt{scipy.interpolate.griddata} function is used with the \texttt{method="linear"} argument which itself uses \texttt{scipy.interpolate.LinearNDInterpolator} to do the interpolation as described above. The function is given a $6\times n$ matrix of the six parameters and an $n$-sized list of the water retention fraction for those $n$ simulations. In addition, \texttt{griddata} supports not only calculating interpolations for one set of parameters, but also for lists of parameters which allows to quickly generate 2d diagrams as seen in \ref{the_chapter_where_I_show_the_v_alpha_plots}.
 
 \subsection{Results}
 
 \section{RBF interpolation}
 
-Another approach to interpolate data is using \textit{Radial Basis Functions}. A function $\phi$ for which $\phi(x)=\phi(\left\|x\right\|)$ is true is called \textit{radial}. Now to interpolate, we need to find a $s(x)$ which is the same as the given values $p_i$ in all points.
+\subsection{Theory}
+
+Another approach to interpolate data is using \textit{Radial Basis Functions}. A very good explanation on how they work is given in \cite{RBF} which is shortly summarized below:
+
+ A function $\phi$ for which $\phi(x)=\phi(\left\|x\right\|)$ is true is called \textit{radial}. Now to be able to interpolate, we need to find the interpolation function $s(x)$ which is the same as the given values $p_i$ in all points.
 
 \begin{align}
 	s(x_i)=p_i,\quad i=1,2,\dots,n
 \end{align}
 
-The RBF interpolation now consists of a linear combination of $\phi(\left\|x-x_i\right\|)$ which the $n$ constants $\lambda_i$.
+The RBF interpolation now consists of a linear combination of $\phi(\left\|x-x_i\right\|)$ for a chosen radial function $\phi$ which $n$ constants $\lambda_i$.
 
 \begin{align}
 	s(x)&=	\sum_{i=1}^{n}\lambda_i\phi(\left\|x-x_i\right\|) \\
 	%
-	p_i&=\sum_{i=1}^{n}\lambda_i\phi(\left\|x_j-x_i\right\|),\quad j=1,2,\dots,n
+	p_j&=\sum_{i=1}^{n}\lambda_i\phi(\left\|x_j-x_i\right\|),\quad j=1,2,\dots,n
 \end{align}
 
 Therefore this can be written as a linear matrix equation:
@@ -220,10 +222,10 @@ or simply
 \begin{align}
 	\Phi\lambda=p
 \end{align}
-scipy.interpolate import Rbf
-with $\Phi$ being a symmetric $n \times n $ matrix as $\left\|x_j-x_i\right\|=\left\|x_i-x_j\right\|$. There are many possibilities for the radias basis function $\phi(r)$. It can be for example linear ($r$), gaussian ($e^{-r^2}$) or multiquadric ($\sqrt{\left(\frac{r}{\epsilon}\right)^2 + 1}$) with $\epsilon$ being a constant that defaults to the approximate average distance between nodes.
 
-If we for example have the three points $x_1=0$, $x_1=3$ and $x_1=5$ with $p(x_1)=0.2$, $p(x_2)=0.8$ and $p(x_3)=0.1$ and choose the gaussian RB-function\todo{looks odd} we get the following:
+with $\Phi$ being a symmetric $n \times n $ matrix as $\left\|x_j-x_i\right\|=\left\|x_i-x_j\right\|$. There are many possibilities for the radial basis function $\phi(r)$. It can be for example linear ($r$), gaussian ($e^{-r^2}$) or multiquadric ($\sqrt{\left(\frac{r}{\epsilon}\right)^2 + 1}$) with $\epsilon$ being a constant that defaults to the approximate average distance between nodes.
+
+As an example, consider the three points $x_1=0$, $x_1=3$ and $x_1=5$ with $p(x_1)=0.2$, $p(x_2)=0.8$ and $p(x_3)=0.1$ and choose the gaussian RB-function\todo{looks odd} we get the following:
 \begin{align}
 	\begin{bmatrix}
 		\phi(0) & \phi(3)  & \phi(5) \\
@@ -249,15 +251,18 @@ If we for example have the three points $x_1=0$, $x_1=3$ and $x_1=5$ with $p(x_1
 \end{align}
 
 Solving this linear matrix equation using \texttt{numpy.linalg.solve} gives us the solution for $\lambda$:
-\begin{gather}
+\begin{equation}
 	\lambda=\begin{bmatrix}
 	0.200 \\0.798  \\0.085
 	\end{bmatrix}
-	\\
+\end{equation}
+
+Combined we get the following linear combination for the interpolated function $s(x)$:
+\begin{equation}
 	s(x)=0.200\phi(\left\|x\right\|)+
 		0.798\phi(\left\|x-3\right\|)+
 		0.085\phi(\left\|x-5\right\|)
-\end{gather}
+\end{equation}
 
 
 
@@ -280,9 +285,7 @@ Solving this linear matrix equation using \texttt{numpy.linalg.solve} gives us t
 	
 \end{figure}
 
-Applying the same method to a list of random points allows to interpolate their values for arbitrary other points like the green point on the sinus-like curve in Figure \ref{fig:rbf-2}. This can also be trivially extended in $m$ dimensions by replacing $x$ with an $x\in\mathbb{R}^m$ and using a norm in $\mathbb{R}^m$ for $\left\|\centerdot\right\|$.
-
-\footcite{RBF}\todo{whole section?}
+Applying the same method to a list of random points allows to interpolate their values for arbitrary other points like the green point on the sinus-like curve in Figure \ref{fig:rbf-2}. This can also be trivially extended in $m$ dimensions by replacing $x$ with an $x\in\mathbb{R}^m$ and using a norm in $\mathbb{R}^m$ for $\left\|\ \right\|$.
 
 \subsection{Implementation}
 
@@ -299,11 +302,11 @@ The scipy function \texttt{scipy.interpolate.Rbf} allows directly interpolating 
 
 \section{Neural Networks}
 
-Another method that is good at taking pairs of input and output values and then being able to predict output values for arbitrary input sets are \textit{Artificial neural networks} (\texttt{ANNs}).
+Another method that is good at taking pairs of input and output values and then able to predict output values for arbitrary input sets is using \textit{Artificial neural networks} (\texttt{ANNs}).
 
 \subsection{Theory}
 
-The idea behind artificial neural networks is trying to emulate the functionality of neurons by having nodes that are connected to each others. The weights of these connections are modified during the training to represent the training data and can then be used to predict new results for input values not seen in the training data.
+The idea behind artificial neural networks is trying to emulate the functionality of neurons by having nodes that are connected to each others. The weights $w$ of these connections are modified during the training to represent the training data and can then be used to predict new results for input values not seen in the training data.
 
 Every neural network needs an input layer with as many nodes as input parameters and an output layer with a node for every output value. In between there can be multiple hidden layers with an arbitrary amount of nodes. (Figure \ref{fig:neuralnetwork-general})
 
@@ -315,19 +318,19 @@ If we first only consider a single neuron, then on every iteration it calculates
 
 The non-linear activation function allows the network to be able to approximate all types of functions instead of being just a linear function itself. Popular activation functions are the sigmoid function $\sigma(x)={\frac {1}{1+e^{-x}}}$ and the ReLU function (\textit{rectified linear unit}, $f(x)=\max(0,x)$).\footcite{NN-math}
 
-After this first step (the \textit{feedforward}) is done, the weights can be modified by comparing the prediction with the real output (the \textit{backpropagation}). The function that describes the error between them is called the Loss function and one of them is the mean squared error function:
+After this first step (the \textit{feedforward}) is done, the weights can be modified by comparing the prediction with the real output (the \textit{backpropagation}). The function that describes the error between them is called the Loss function and on possible form is the mean squared error function:
 
 \begin{equation}
 	L(\hat{y},y)=\sum_{i}(\hat{y}_i-y_i)^2
 \end{equation}
 
-To update the weights the derivative of the Loss function over the weights is calculated and added to the existing weights.\todo{more details?}\footcite{NN-python}
+To update the weights the derivative of the Loss function with respect to the weights is calculated and added to the existing weights.\todo{more details?}\footcite{NN-python}
 
 
 
 \subsection{Implementation}
 
-As building a neural network from scratch gets complex very quickly it is easier to use \texttt{Keras}\footnote{\url{https://keras.io}} which provides easy to use high-level functions over the calculations provided by \texttt{TensorFlow}\footnote{\url{https://www.tensorflow.org/}}. To build our network, we only need to specify the structure of the layers, take our input and let the network train 200 times.\todo{explain more once it is finished}
+As building a neural network from scratch gets complex very quickly, it is easier to use \texttt{Keras}\footnote{\url{https://keras.io}} which provides easy to use high-level functions over the calculations provided by \texttt{TensorFlow}\footnote{\url{https://www.tensorflow.org/}}. To build our network, we only need to specify the structure of the layers, take our input and let the network train for 200 epochs (iterations of feedforward and backpropagation).\todo{explain more once it is finished}
 
 \begin{lstlisting}[language=Python]
 model = Sequential()
@@ -343,7 +346,7 @@ model.fit(X, Y, epochs=200)
 
 \todo{more text on how exactly the data is split up once it is decided}
 
-After the training the resulting model can be saved in a small \texttt{HDF5} file which can be used to very quickly evaluate the model (about \SI{100}{\milli\second} for \num{10000} interpolations)
+After the training the resulting model can be saved in a small \texttt{HDF5} file which can be used to evaluate the model very quickly (about \SI{100}{\milli\second} for \num{10000} interpolations).
 
 
 \subsection{Results}
