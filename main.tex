@@ -47,6 +47,7 @@ To keep the simulation time short and make it possible to do many simulations wi
 
 
 \section{Parameters}
+\label{sec:parameters}
 
 Six parameters have been identified that have an influence on the result of the simulation:
 
@@ -95,12 +96,13 @@ This simulation run ran on the \texttt{amanki} server using a \texttt{Nvidia GTX
 
 
 \section{Post-Processing}
+\label{sec:postprocessing}
 
 After the simulation the properties of the SPH particles needs to be analyzed. To do this the \texttt{identify\_fragments} C program by Christoph Burger\todo{better citation} uses a friends-of-friends algorithm to group the final particles into fragments. Afterwards \texttt{calc\_aggregates} calculates the mass of the two largest fragments together with their gravitationally bound fragments and its output is written into a simple text file (\texttt{aggregates.txt}). This way, the mass retention (total mass of the two largest fragments compared to total mass of projectile and trget) and the water retention can be determined for every simulation result.
 
 \section{Resimulation}
 
-To increase the amount of available data and especially reduce the errors caused by the grid-based parameter choices (Table \ref{tab:first_simulation_parameters}) a second simulation run has been started has been started. All source code and initial parameters have been left the same apart from the six main input parameters described above. These will be set to a random value in the range listed in Table \ref{tab:resimulation-parameters} apart from the the initial water fractions. As they seem to have little impact on the outcome they are set fixed to \SI{15}{\percent} to simplify the parameter space.
+To increase the amount of available data and especially reduce the errors caused by the grid-based parameter choices (Table \ref{tab:first_simulation_parameters}) a second simulation run has been started has been started. All source code and initial parameters have been left the same apart from the six main input parameters described above. These will be set to a random value in the range listed in Table \ref{tab:resimulation-parameters} apart from the the initial water fractions. As they seem to have little impact on the outcome (see Section \ref{sec:cov}) they are set fixed to \SI{15}{\percent} to simplify the parameter space.
 
 \begin{table}
 	\centering
@@ -120,6 +122,20 @@ To increase the amount of available data and especially reduce the errors caused
 This way, an addition \num{427}\todo{correct number} simulations have been calculated on \texttt{Nvidia Tesla P100} graphics cards on Google Cloud.X
 
 \chapter{Results}
+
+For the large set of simulations we can now extract the needed value. The output of the relaxation program (\texttt{spheres\_ini\_log}) gives us the precise values for impact angle and velocity and the exact masses of all bodies. As theses values slightly differ from the parameters explained in Section \ref{sec:parameters} due to the setup of the simulation, in the following steps only the precise values are considered. From the \texttt{aggregates.txt} explained in Section \ref{sec:postprocessing} the final masses and water fractions of the two largest fragments are extracted. From these the main output considered in this analysis, the water retention of the two fragments can be calculated. 
+
+
+\section{Correlations}
+\label{sec:cov}
+One very easy, but sometimes flawed\footnote{\todo[inline]{explain issues with pearson}} way to look at the whole dataset at once is calculating the \textit{Pearson correlation coefficient} between the input parameters and the output water fraction (Figure \ref{fig:cov}). This shows the expected result that a higher collision angle (so a more hit-and-run like collision) has a higher water retention and a higher collision speed results in far less water left on the two largest remaining fragments. In addition higher masses seem to result in less water retention. The initial water fractions of the two bodies does seem to only have very little influence on the result of the simulations.
+
+\begin{figure}[h] % TODO: h is temporary 
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/cov.pdf}
+	\caption{TODO}
+	\label{fig:cov}
+\end{figure}
 
 \chapter{Interpolations}
 
