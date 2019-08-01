@@ -4,7 +4,7 @@ digraph G {
     nodesep=.05;
 	bgcolor="transparent";
     penwidth = 0
-    node[label=""]    
+    node[label=""]
     subgraph cluster_0 {
 		color=white;
                 node [style=solid,color=blue4, shape=circle];
@@ -35,7 +35,7 @@ digraph G {
 		label="output layer";
 	}
 
-    {x1; x2; x3; x4} -> {a12;a22;a32;a42;a52};
-    {a12; a22; a32; a42; a52} -> {a13;a23;a33;a43;a53}; 
-	{a13;a23;a33;a43;a53} -> {O1;O2;O3;O4}
+    {x1; x2; x3; x4} -> {a12;a22;a32;a42;a52} [arrowsize=0.5];
+    {a12; a22; a32; a42; a52} -> {a13;a23;a33;a43;a53} [arrowsize=0.5];
+	{a13;a23;a33;a43;a53} -> {O1;O2;O3;O4} [arrowsize=0.6]
 }

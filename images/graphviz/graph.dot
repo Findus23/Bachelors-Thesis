@@ -4,10 +4,10 @@ digraph G {
 	splines=line
     nodesep=.05;
     bgcolor="transparent";
-    penwidth = 0  
-          
+    penwidth = 0
+
     node [label=""];
-        
+
     subgraph cluster_0 {
 		color=white;
         node [style=solid,color=blue4, shape=circle];
@@ -24,11 +24,19 @@ digraph G {
 
 	subgraph cluster_2 {
 		color=white;
+		node [style=solid,color=red2, shape=circle];
+		a13 a23 a33;
+		label = "hidden layer";
+	}
+
+	subgraph cluster_3 {
+		color=white;
 		node [style=solid,color=seagreen2, shape=circle];
 		O1;
 		label="output layer";
 	}
 
-    {x1; x2; x3; x4; x5; x6} -> {a12;a22;a32;a42};
-    {a12; a22; a32; a42} -> O1
+    {x1; x2; x3; x4; x5; x6} -> {a12;a22;a32;a42} [arrowsize=0.5];
+	{a12;a22;a32;a42} -> {a13; a23; a33} [arrowsize=0.7];
+    {a13; a23; a33} -> O1
 }
