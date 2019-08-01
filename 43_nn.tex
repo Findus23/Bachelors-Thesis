@@ -1,0 +1,60 @@
+
+\begin{figure}[h] % TODO: h is temporary 
+	\centering
+	\includegraphics[width=0.4\linewidth]{images/graphviz/general.pdf}
+	\caption{}
+	\label{fig:neuralnetwork-general}
+\end{figure}
+
+\section{Neural Networks}
+
+Another method that is good at taking pairs of input and output values and then able to predict output values for arbitrary input sets is using \textit{Artificial neural networks} (\texttt{ANNs}).
+
+\subsection{Theory}
+
+The idea behind artificial neural networks is trying to emulate the functionality of neurons by having nodes that are connected to each others. The weights $w$ of these connections are modified during the training to represent the training data and can then be used to predict new results for input values not seen in the training data.
+
+Every neural network needs an input layer with as many nodes as input parameters and an output layer with a node for every output value. In between there can be multiple hidden layers with an arbitrary amount of nodes. (Figure \ref{fig:neuralnetwork-general})
+
+If we first only consider a single neuron, then on every iteration it calculates the sum over all input values multiplied with their weight $w$. Afterwards an activation function $g$ is applied to the sum $z$ to get the prediction $\hat{y}$.
+
+\begin{equation}
+	z=\sum_{i}w_ix_i \qquad \hat{y}=g(z)
+\end{equation}
+
+The non-linear activation function allows the network to be able to approximate all types of functions instead of being just a linear function itself. Popular activation functions are the sigmoid function $\sigma(x)={\frac {1}{1+e^{-x}}}$ and the ReLU function (\textit{rectified linear unit}, $f(x)=\max(0,x)$).\footcite{NN-math}
+
+After this first step (the \textit{feedforward}) is done, the weights can be modified by comparing the prediction with the real output (the \textit{backpropagation}). The function that describes the error between them is called the Loss function and on possible form is the mean squared error function:
+
+\begin{equation}
+	L(\hat{y},y)=\sum_{i}(\hat{y}_i-y_i)^2
+\end{equation}
+
+To update the weights the derivative of the Loss function with respect to the weights is calculated and added to the existing weights.\todo{more details?}\footcite{NN-python}
+
+
+
+\subsection{Implementation}
+
+As building a neural network from scratch gets complex very quickly, it is easier to use \texttt{Keras}\footnote{\url{https://keras.io}} which provides easy to use high-level functions over the calculations provided by \texttt{TensorFlow}\footnote{\url{https://www.tensorflow.org/}}. To build our network, we only need to specify the structure of the layers, take our input and let the network train for 200 epochs (iterations of feedforward and backpropagation).\todo{explain more once it is finished}
+
+\begin{lstlisting}[language=Python]
+model = Sequential()
+model.add(Dense(6, input_dim=6, kernel_initializer='normal', activation='relu'))
+model.add(Dense(5, kernel_initializer='normal', activation='relu'))
+model.add(Dense(4, kernel_initializer='normal', activation='relu'))
+model.add(Dense(1, kernel_initializer='normal'))
+model.compile(loss='mean_squared_error', optimizer='adam')
+
+model.fit(X, Y, epochs=200)
+\end{lstlisting}\todo{just a placeholder}
+
+
+\todo{more text on how exactly the data is split up once it is decided}
+
+After the training the resulting model can be saved in a small \texttt{HDF5} file which can be used to evaluate the model very quickly (about \SI{100}{\milli\second} for \num{10000} interpolations).
+
+
+\subsection{Results}
+
+\subsection{Issues}
