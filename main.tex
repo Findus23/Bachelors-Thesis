@@ -119,7 +119,7 @@ To increase the amount of available data and especially reduce the errors caused
 \label{tab:resimulation-parameters}
 \end{table}
 
-This way, an addition \num{427}\todo{correct number} simulations have been calculated on \texttt{Nvidia Tesla P100} graphics cards on Google Cloud.X
+This way, an addition \num{553} simulations have been calculated on \texttt{Nvidia Tesla P100} graphics cards on Google Cloud. (Of which 100 simulations are only used for comparison in Section \ref{comparison})
 
 \chapter{Results}
 
@@ -128,7 +128,7 @@ For the large set of simulations we can now extract the needed value. The output
 
 \section{Correlations}
 \label{sec:cov}
-One very easy, but sometimes flawed\footnote{\todo[inline]{explain issues with pearson}} way to look at the whole dataset at once is calculating the \textit{Pearson correlation coefficient} between the input parameters and the output water fraction (Figure \ref{fig:cov}). This shows the expected result that a higher collision angle (so a more hit-and-run like collision) has a higher water retention and a higher collision speed results in far less water left on the two largest remaining fragments. In addition higher masses seem to result in less water retention. The initial water fractions of the two bodies does seem to only have very little influence on the result of the simulations.
+One very easy, but sometimes flawed\footnote{\todo[inline]{explain issues with pearson}} way to look at the whole dataset at once is calculating the \textit{Pearson correlation coefficient} between the input parameters and the output water fraction (Figure \ref{fig:cov}). This shows the expected result that a higher collision angle (so a more hit-and-run like collision) has a higher water retention and a higher collision speed results in far less water left on the two largest remaining fragments. In addition higher masses seem to result in less water retention. The initial water fractions of the two bodies does seem to have very little influence on the result of the simulations.
 
 \begin{figure}[h] % TODO: h is temporary 
 	\centering
@@ -145,7 +145,7 @@ One very easy, but sometimes flawed\footnote{\todo[inline]{explain issues with p
 
 One of the easiest ways to interpolate a new value between two known values is linear interpolation. It takes the closest values and creates a linear function between them.
 
-In one dimension linear interpolation is pretty trivial. For example, let's assume that we have 20 random points $P$ between 0 and 1 (\textcolor{Red}{\textbullet} and  \textcolor{Blue}{\textbullet} in Figure \ref{fig:one-dim-interpolation}) and have a new point $I$ (\textcolor{Green}{\textbullet}) at $0.4$ for which we want to interpolate. Finding the two closest points \textcolor{Red}{\textbullet} above and below is trivial as there is only one dimension to compare. Now, if we have measured a value $f(P)$ for each of these points, a straight line (\textcolor{LightGreen}{\textbf{|}}) between the two closest values can be drawn and an interpolated value for $f(I)$ can be found.
+In one dimension linear interpolation is pretty trivial. For example, let's assume that we have 20 random points $P$ between 0 and 1 (\textcolor{Red}{\textbullet} and  \textcolor{Blue}{\textbullet} in Figure \ref{fig:one-dim-interpolation}) and have a new point $I$ (\textcolor{Green}{\textbullet}) at $0.4$ for which we want to interpolate. Finding the two closest points \textcolor{Red}{\textbullet} above and below is trivial as there is only one dimension to compare. Now, if we have measured a value $f(P)$ for each of these points, a straight line (\textcolor{LightGreen}{\textbf{|}}) between the two closest values can be drawn and an interpolated value for $f(I)$ can be found. 
 
 \begin{figure}[h] % TODO: h is temporary 
 	\centering
