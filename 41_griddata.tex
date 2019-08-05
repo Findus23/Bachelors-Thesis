@@ -47,6 +47,6 @@ This approach has the advantage that it can be extended in more than two dimensi
 
 \subsection{Implementation}
 \label{sec:griddata-implementation}
-For doing the actual interpolations, the \texttt{scipy.interpolate.griddata} function is used with the \texttt{method="linear"} argument which itself uses \texttt{scipy.interpolate.LinearNDInterpolator} to do the interpolation as described above. The function is given a $6\times n$ matrix of the six parameters and an $n$-sized list of the water retention fraction for those $n$ simulations. In addition, \texttt{griddata} supports not only calculating interpolations for one set of parameters, but also for lists of parameters which allows to quickly generate 2d diagrams as seen in \ref{the_chapter_where_I_show_the_v_alpha_plots}.
+For doing the actual interpolations, the \texttt{scipy.interpolate.griddata} function is used with the \texttt{method="linear"} argument which itself uses \texttt{scipy.interpolate.LinearNDInterpolator} to do an interpolation similar to the one described above. The function is given a $6\times n$ matrix of the six parameters and an $n$-sized list of the water retention fraction for those $n$ simulations. In addition, \texttt{griddata} supports not only calculating interpolations for one set of parameters, but also for lists of parameters which allows to quickly generate 2d diagrams as seen in \ref{the_chapter_where_I_show_the_v_alpha_plots}.
 
 \subsection{Results}

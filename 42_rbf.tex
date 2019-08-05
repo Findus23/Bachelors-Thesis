@@ -49,7 +49,7 @@ or simply
 
 with $\Phi$ being a symmetric $n \times n $ matrix as $\left\|x_j-x_i\right\|=\left\|x_i-x_j\right\|$. There are many possibilities for the radial basis function $\phi(r)$. It can be for example linear ($r$), gaussian ($e^{-r^2}$) or multiquadric ($\sqrt{\left(\frac{r}{\epsilon}\right)^2 + 1}$) with $\epsilon$ being a constant that defaults to the approximate average distance between nodes.
 
-As an example, consider the three points $x_1=0$, $x_1=3$ and $x_1=5$ with $p(x_1)=0.2$, $p(x_2)=0.8$ and $p(x_3)=0.1$ and choose the gaussian RB-function\todo{looks odd} we get the following:
+As an example, consider the three points $x_1=0$, $x_1=3$ and $x_1=5$ with $p(x_1)=0.2$, $p(x_2)=0.8$ and $p(x_3)=0.1$ and choose a gaussian function for $\phi$ we get the following:
 \begin{align}
 	\begin{bmatrix}
 		\phi(0) & \phi(3)  & \phi(5) \\
@@ -81,7 +81,7 @@ Solving this linear matrix equation using \texttt{numpy.linalg.solve} gives us t
 	\end{bmatrix}
 \end{equation}
 
-Combined we get the following linear combination for the interpolated function $s(x)$:
+Combined we get the following linear combination for the interpolated function $s(x)$ (Figure \ref{fig:rbf-1}):
 \begin{equation}
 	s(x)=0.200\phi(\left\|x\right\|)+
 		0.798\phi(\left\|x-3\right\|)+
