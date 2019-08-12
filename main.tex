@@ -1,4 +1,5 @@
 % !TeX spellcheck = en_US
+% !TeX spellcheck = en_US
 \input{template.tex}
 \hypersetup{
 	pdftitle={The Title of the Bachelor Thesis},
@@ -21,19 +22,18 @@
 
 \chapter{Introduction}\label{introduction}
 
-
-Here comes some short science explanation about how planets form and water is transported.
+One important question for planet creation is, how water did get to the earth. The part protoplanetary disk closest to the sun was too hot to make it possible that water can condense on Earth during formation. And while there are theories that the region where ice is possible inside the snow-line moved during Earth's formation\footcite{snowline}, the most popular theory is that water moved inwards in the solar system through collisions of water-rich proto-planets.%
+\todo{citation needed}
 
 
 \section{The perfect merging assumption}
 
-To better understand how this process works, large n-body simulations over the lifetime of the solar systems have been conducted.\todo{give an example} Most of these neglect the physical details of collisions when two bodies collide for simplicity and instead assume that a perfect merging occurs. So all the mass of the two progenitor bodies and especially all of their water (ice) is retained in the newly created body. Obviously this is a simplification as in real collisions perfect merging is very rare and most of the time either partial accretion or a hit-and-run encounter occurs. (\cite{CollisionTypes}) Therefore the amount of water retained after collisions is consistently overestimated in these simulations. Depending on the parameters like impact angle and velocity a large fraction of mass and water can be lost during collisions.\footcite{MaindlSummary}
+To better understand how this process works, large n-body simulations over the lifetime of the solar systems have been conducted.\todo{give an example} Most of these neglect the physical details of collisions when two bodies collide for simplicity and instead assume that a perfect merging occurs. So all the mass of the two progenitor bodies and especially all of their water (ice) is retained in the newly created body. Obviously this is a simplification as in real collisions perfect merging is very rare and most of the time either partial accretion or a hit-and-run encounter occurs.\footcite{CollisionTypes} Therefore the amount of water retained after collisions is consistently overestimated in these simulations. Depending on the parameters like impact angle and velocity a large fraction of mass and water can be lost during collisions.\footcite{MaindlSummary}
 
 \section{Some other heading}
 
 To understand how the water transport works exactly one has to find an estimation of the mass and water fractions that are retained during two-body simulations depending on the parameters of the impact.
-
-\todo{And here the explanation of the chapters}
+First I will be shortly describing the simulation setup, the important parameters and the post-processing of the results (Chapter \ref{chapter:simulations}). Next I will summarize the results of the simulations and their properties (Chapter \ref{chapter:results}). In the main section I will then be describing three different approaches to interpolate and generalize these results for arbitrary collisions (Chapter \ref{chapter:interpolations}). 
 
 
 \include{20_simulations}
