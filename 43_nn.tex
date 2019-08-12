@@ -4,7 +4,7 @@
 	\begin{subfigure}[t]{0.5\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{images/graphviz/general.pdf}
-		\caption{a simple neural network}
+		\caption{an example for a neural network}
 		\label{fig:neuralnetwork-general}
 	\end{subfigure}%
 	~ 
@@ -67,7 +67,7 @@ model.fit(x, Y, epochs=200, validation_data=(x_test, Y_test))
 
 \subsection{Training}
 
-To find the ideal parameters to use the simulation data (excluding the data from Section \ref{sec:tests}) is split into two groups: The original set of simulations and \SI{80}{\percent} of the new simulation set is used to train the neural network while the remaining \SI{20}{\percent} are used for validation. This means that after every epoch not only the loss function for the training data is calculated, but also for the separate validation data (Figure \ref{fig:loss_val}). Finally the model with the lowest loss on the validation data set was chosen (Listing \ref{lst:model}).
+To find the ideal parameters to use the simulation data (excluding the data from Section \ref{sec:comparison}) is split into two groups: The complete original set of simulations and \SI{80}{\percent} of the new simulation set is used to train the neural network while the remaining \SI{20}{\percent} are used for validation. This means that after every epoch the loss function is not only calculated for the training data, but also for the separate validation data (Figure \ref{fig:loss_val}). Finally the model with the lowest loss on the validation data set was chosen (Listing \ref{lst:model}).
 
 
 \begin{figure}[h] % also temporary
@@ -85,7 +85,7 @@ To find the ideal parameters to use the simulation data (excluding the data from
 		\caption{loss function on the validation data}
 		\label{fig:val_loss}
 	\end{subfigure}
-	\caption{During training the loss function (mean squared error) decreases with every epoch until it converges to a final value}
+	\caption{During training the loss function (mean squared error) decreases with every epoch until it converges to a final value.}
 	\label{fig:loss_val}
 	
 \end{figure}
@@ -94,5 +94,3 @@ After the training the resulting model can be saved in a small \texttt{HDF5} fil
 
 
 \subsection{Results}
-
-\subsection{Issues}
