@@ -23,7 +23,7 @@ american, % language of the document
 % required for proper characters
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
+\DeclareUnicodeCharacter{2212}{-}
 
 % helps with equations
 \usepackage{amsmath,amssymb,amstext}
@@ -60,6 +60,9 @@ american, % language of the document
 \usepackage{tabularx}
 \usepackage{booktabs} % nicer table seperations
 \usepackage{todonotes}
+
+\usepackage{pgf}
+
 %----------------------------------- Style decisions -----------------------------------
 
 \hyphenpenalty=750 % break less words than default - try different values for success

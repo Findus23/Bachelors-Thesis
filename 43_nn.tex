@@ -94,3 +94,22 @@ After the training the resulting model can be saved in a small \texttt{HDF5} fil
 
 
 \subsection{Results}
+
+\begin{figure}[h!] % also temporary
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/plots/nn1.pdf}
+		\caption{$m_{total}=\num{e22}$, $\gamma=0.6$, $wt=wp=0.15$}
+		\label{fig:nn1}
+	\end{subfigure}%
+	~ 
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/plots/nn2.pdf}
+		\caption{$m_{total}=\num{e24}$, $\gamma=0.6$, $wt=wp=0.15$}
+		\label{fig:nn2}
+	\end{subfigure}
+	\caption{Interpolation result using the trained neural network}
+	\label{fig:nnresults}
+\end{figure}

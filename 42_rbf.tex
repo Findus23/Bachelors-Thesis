@@ -116,3 +116,22 @@ Applying the same method to a list of random points allows to interpolate their 
 The scipy function \texttt{scipy.interpolate.Rbf} allows directly interpolating a value similar to \texttt{griddata} in Section \ref{sec:griddata-implementation}. A difference in usage is that it only allows interpolating a single value, but as it is pretty quick it is possible to calculate multiple values sequentially.
 
 \subsection{Results}
+
+\begin{figure}[h!] % also temporary
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/plots/rbf1.pdf}
+		\caption{$m_{total}=\num{e22}$, $\gamma=0.6$, $wt=wp=0.15$}
+		\label{fig:rbf1}
+	\end{subfigure}%
+	~ 
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/plots/rbf2.pdf}
+\caption{$m_{total}=\num{e24}$, $\gamma=0.6$, $wt=wp=0.15$}
+		\label{fig:rbf2}
+	\end{subfigure}
+	\caption{Interpolation result using Radial Basis Functions}
+	\label{fig:rbfresults}
+\end{figure}
