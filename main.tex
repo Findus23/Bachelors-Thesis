@@ -32,7 +32,68 @@
 
 \chapter{Mass retention}
 
-\todo[inline]{Just mention quickly that everything can also be applied to mass retention and show a few plots}
+While this thesis focuses on the water retention after the collisions, the same methods can be applied to the fraction of basalt from the core of the two bodies that remains after the collision.
+
+
+\begin{table}
+	\centering
+	\begin{tabular}{rcc}
+		& {mean squared error} & {mean error} \\
+		neural network &        0.043         &    0.167     \\
+		RBF &        0.032         &    0.149     \\
+		griddata &        0.041         &   0.169
+	\end{tabular}
+	\caption{prediction accuracy for the different interpolation methods}
+	\label{tab:mass_comparison}
+\end{table}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/plots/mass_griddata1.pdf}
+		\caption{Griddata with $m_{total}=\num{e22}$}
+		\label{fig:mass_griddata1}
+	\end{subfigure}%
+	~ 
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{images/plots/mass_griddata2.pdf}
+		\caption{Griddata with $m_{total}=\num{e24}$}
+		\label{fig:mass_griddata2}
+	\end{subfigure}
+~ 
+	\begin{subfigure}[t]{0.5\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{images/plots/mass_rbf1.pdf}
+	\caption{RBF with $m_{total}=\num{e22}$}
+	\label{fig:mass_rbf1}
+\end{subfigure}%
+~ 
+\begin{subfigure}[t]{0.5\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{images/plots/mass_rbf2.pdf}
+	\caption{RBF with $m_{total}=\num{e24}$}
+	\label{fig:mass_rbf2}
+\end{subfigure}
+~ 
+\begin{subfigure}[t]{0.5\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{images/plots/mass_nn1.pdf}
+	\caption{Neural Network  with $m_{total}=\num{e22}$}
+	\label{fig:mass_nn1}
+\end{subfigure}%
+~ 
+\begin{subfigure}[t]{0.5\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{images/plots/mass_nn2.pdf}
+	\caption{Neural Network  with $m_{total}=\num{e24}$}
+	\label{fig:mass_nn2}
+\end{subfigure}
+	\caption{TODO}
+	\label{fig:mass_results}
+\end{figure}
+
 
 
 
