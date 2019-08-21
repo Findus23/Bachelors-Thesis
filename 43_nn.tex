@@ -26,9 +26,9 @@ Another method that is good at taking pairs of input and output values and then 
 
 The idea behind artificial neural networks is trying to emulate the functionality of neurons by having nodes that are connected to each others. The weights $w$ of these connections are modified during the training to represent the training data and can then be used to predict new results for input values not seen in the training data.
 
-Every neural network needs an input layer with as many nodes as input parameters and an output layer with a node for every output value. In between there can be multiple hidden layers with an arbitrary amount of nodes. (Figure \ref{fig:neuralnetwork-general})
+Every neural network needs an input layer with as many nodes as input parameters and an output layer with a node for every output value. In between, there can be multiple hidden layers with an arbitrary amount of nodes. (Figure \ref{fig:neuralnetwork-general})
 
-If we first only consider a single neuron, then on every iteration it calculates the sum over all input values multiplied with their weight $w$. Afterwards an activation function $g$ is applied to the sum $z$ to get the prediction $\hat{y}$.
+If we first only consider a single neuron, then on every iteration it calculates the sum over all input values multiplied with their weight $w$. Afterwards, an activation function $g$ is applied to the sum $z$ to get the prediction $\hat{y}$.
 
 \begin{equation}
 	z=\sum_{i}w_ix_i \qquad \hat{y}=g(z)
@@ -42,13 +42,13 @@ After this first step (the \textit{feedforward}) is done, the weights can be mod
 	L(\hat{y},y)=\sum_{i}(\hat{y}_i-y_i)^2
 \end{equation}
 
-To update the weights the derivative of the Loss function with respect to the weights is calculated and added to the existing weights.\todo{more details?}\footcite{NN-python}
+To update the weights, the derivative of the Loss function with respect to the weights is calculated and added to the existing weights.\todo{more details?}\footcite{NN-python}
 
 \subsection{Implementation}
 
 As building a neural network from scratch gets complex very quickly, it is easier to use \texttt{Keras}\footnote{\url{https://keras.io}} which provides easy to use high-level functions over the calculations provided by \texttt{TensorFlow}\footnote{\url{https://www.tensorflow.org/}}. To build our network, we only need to specify the structure of the layers, take our input and let the network train for 200 epochs (iterations of feedforward and backpropagation). 
 
-The network needs six nodes in the input layer for the input parameters and one node in the output layer for the prediction. In between are two layers with decreasing numbers of nodes as this seems to give the best results. (Figure \ref{fig:neuralnetwork-graph})
+The network needs six nodes in the input layer for the input parameters and one node in the output layer for the prediction. In between, are two layers with decreasing numbers of nodes as this seems to give the best results. (Figure \ref{fig:neuralnetwork-graph})
 
 \begin{lstlisting}[language=Python,caption=the used model as Keras code,label=lst:model]
 from keras import Sequential
@@ -67,7 +67,7 @@ model.fit(x, Y, epochs=200, validation_data=(x_test, Y_test))
 
 \subsection{Training}
 
-To find the ideal parameters to use the simulation data (excluding the data from Section \ref{sec:comparison}) is split into two groups: The complete original set of simulations and \SI{80}{\percent} of the new simulation set is used to train the neural network while the remaining \SI{20}{\percent} are used for validation. This means that after every epoch the loss function is not only calculated for the training data, but also for the separate validation data (Figure \ref{fig:loss_val}). Finally the model with the lowest loss on the validation data set was chosen (Listing \ref{lst:model}).
+To find the ideal parameters to use, the simulation data (excluding the data from Section \ref{sec:comparison}) is split into two groups: The complete original set of simulations and \SI{80}{\percent} of the new simulation set is used to train the neural network while the remaining \SI{20}{\percent} are used for validation. This means that after every epoch the loss function is not only calculated for the training data, but also for the separate validation data (Figure \ref{fig:loss_val}). Finally, the model with the lowest loss on the validation data set was chosen (Listing \ref{lst:model}).
 
 
 \begin{figure}[h] % also temporary
@@ -90,7 +90,7 @@ To find the ideal parameters to use the simulation data (excluding the data from
 	
 \end{figure}
 
-After the training the resulting model can be saved in a small \texttt{HDF5} file which can be used to evaluate the model very quickly (about \SI{100}{\milli\second} for \num{10000} interpolations).
+After the training, the resulting model can be saved in a small \texttt{HDF5} file which can be used to evaluate the model very quickly (about \SI{100}{\milli\second} for \num{10000} interpolations).
 
 
 \subsection{Results}

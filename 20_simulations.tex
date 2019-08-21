@@ -7,7 +7,7 @@ For a realistic model of two gravitationally colliding bodies the SPH (\textit{s
 
 In the simulation two celestial bodies are placed far enough apart so that tidal forces can affect the collision (5 times the sum of the radii). Both objects consist of a core with the physical properties of basalt rocks and an outer mantle made of water ice. These two-body-collisions are similar to those that happen between protoplanets or the collision that created the Earth's Moon.\footcite{dvorakMoon}
 
-To keep the simulation time short and make it possible to do many simulations with varying parameters 20k SPH particles are used and each simulation is run for 12 hours and every 144 seconds the current state is saved.
+To keep the simulation time short and make it possible to do many simulations with varying parameters, 20k SPH particles are used and each simulation is run for 12 hours and every 144 seconds the current state is saved.
 
 \section{Parameters}
 \label{sec:parameters}
@@ -27,11 +27,11 @@ The impact angle is defined in a way that $\alpha=\ang{0}$ corresponds to a head
 
 \subsection{target and projectile mass}
 
-The total masses in these simulations range from about two Ceres masses (\SI{1.88e+21}{\kilogram}) to about two earth masses (\SI{1.19e+25}{\kilogram}). In addition to the total mass $m$, the mass fraction between projectile and target $\gamma$ is defined. As the whole setup is symmetrical between the two bodies only mass fractions below and equal to one have been considered.
+The total masses in these simulations range from about two Ceres masses (\SI{1.88e+21}{\kilogram}) to about two earth masses (\SI{1.19e+25}{\kilogram}). In addition to the total mass $m$, the mass fraction between projectile and target $\gamma$ is defined. As the whole setup is symmetrical between the two bodies, only mass fractions below and equal to one have been considered.
 
 \subsection{water fraction of target and projectile}
 
-The last two parameters are the mass fraction of the ice to the total mass of each of the bodies. To keep the numbers of parameter combinations and therefore required simulations low only \SI{10}{\percent} and \SI{20}{\percent} are simulated in the first simulation set.
+The last two parameters are the mass fraction of the ice to the total mass of each of the bodies. To keep the numbers of parameter combinations and therefore required simulations low, only \SI{10}{\percent} and \SI{20}{\percent} are simulated in the first simulation set.
 
 
 \begin{table}
@@ -50,7 +50,7 @@ The last two parameters are the mass fraction of the ice to the total mass of ea
 
 \section{Execution}\todo{think of a better title}
 
-In the first simulation run for every parameter combination from Table \ref{tab:first_simulation_parameters} a separate simulation has been started. First the parameters and other configuration options are written in a \mbox{\texttt{simulation.input}} text file. Afterwards the relaxation program described in \cite[24\psqq]{Burger2018} generates relaxed initial conditions for all 20k particles and saves their state to \texttt{impact.0000}. Finally \texttt{miluphcuda} can be executed with the following arguments to simulate starting from this initial condition for 300 timesteps which each will be saved in a \texttt{impact.XXXX} file.
+In the first simulation run for every parameter combination from Table \ref{tab:first_simulation_parameters} a separate simulation has been started. First, the parameters and other configuration options are written in a \mbox{\texttt{simulation.input}} text file. Afterwards the relaxation program described in \cite[24\psqq]{Burger2018} generates relaxed initial conditions for all 20k particles and saves their state to \texttt{impact.0000}. Finally \texttt{miluphcuda} can be executed with the following arguments to simulate starting from this initial condition for 300 timesteps which each will be saved in a \texttt{impact.XXXX} file.
 
 \begin{lstlisting}[language=bash,flexiblecolumns=false]
 miluphcuda -N 20000 -I rk2_adaptive -Q 1e-4 -n 300  -a 0.5 -H -t 144.0 -f impact.0000 -m material.cfg -s -g
@@ -62,14 +62,14 @@ This simulation run ran on the \texttt{amanki} server using a \texttt{Nvidia GTX
 \section{Post-Processing}
 \label{sec:postprocessing}
 
-After the simulation the properties of the SPH particles needs to be analyzed. To do this the \texttt{identify\_fragments} C program by Christoph Burger (part of the post-processing tools of \texttt{miluphCUDA}) uses a friends-of-friends algorithm to group the final particles into fragments. Afterwards \texttt{calc\_aggregates} calculates the mass of the two largest fragments together with their gravitationally bound fragments and its output is written into a simple text file (\texttt{aggregates.txt}).
+After the simulation the properties of the SPH particles needs to be analyzed. To do this, the \texttt{identify\_fragments} C program by Christoph Burger (part of the post-processing tools of \texttt{miluphCUDA}) uses a friends-of-friends algorithm to group the final particles into fragments. Afterwards \texttt{calc\_aggregates} calculates the mass of the two largest fragments together with their gravitationally bound fragments and its output is written into a simple text file (\texttt{aggregates.txt}).
 
 % This way, the mass retention (total mass of the two largest fragments compared to total mass of projectile and trget) and the water retention can be determined for every simulation result.
 
 \section{Resimulation}
 \label{sec:resimulation}
 
-To increase the amount of available data and especially reduce the errors caused by the grid-based parameter choices (Table \ref{tab:first_simulation_parameters}) a second simulation run has been started. All source code and initial parameters have been left the same apart from the six main input parameters described above. These are set to a random value in the range listed in Table \ref{tab:resimulation-parameters} apart from the initial water fractions. As they seem to have little impact on the outcome (see Section \ref{sec:cov}) they are set to \SI{15}{\percent} to simplify the parameter space.
+To increase the amount of available data and especially reduce the errors caused by the grid-based parameter choices (Table \ref{tab:first_simulation_parameters}), a second simulation run has been started. All source code and initial parameters have been left the same apart from the six main input parameters described above. These are set to a random value in the range listed in Table \ref{tab:resimulation-parameters} apart from the initial water fractions. As they seem to have little impact on the outcome (see Section \ref{sec:cov}), they are set to \SI{15}{\percent} to simplify the parameter space.
 
 \begin{table}
 	\centering
