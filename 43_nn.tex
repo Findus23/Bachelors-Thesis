@@ -4,21 +4,21 @@
 	\begin{subfigure}[t]{0.5\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{images/graphviz/general.pdf}
-		\caption{an example for a neural network}
+		\caption{An example for a neural network}
 		\label{fig:neuralnetwork-general}
 	\end{subfigure}%
 	~ 
 	\begin{subfigure}[t]{0.5\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{images/graphviz/graph.pdf}
-		\caption{the network used for interpolation}
+		\caption{The network used for interpolation}
 		\label{fig:neuralnetwork-graph}
 	\end{subfigure}
 	\caption{}
 	
 \end{figure}
 
-\section{Neural Networks}
+\section{Artificial Neural Networks}
 
 Another method that is good at taking pairs of input and output values and then able to predict output values for arbitrary input sets is using \textit{Artificial neural networks} (\texttt{ANNs}).
 
@@ -36,7 +36,7 @@ If we first only consider a single neuron, then on every iteration it calculates
 
 The non-linear activation function allows the network to be able to approximate all types of functions instead of being just a linear function itself. Popular activation functions are the sigmoid function $\sigma(x)={\frac {1}{1+e^{-x}}}$ and the ReLU function (\textit{rectified linear unit}, $f(x)=\max(0,x)$).\footcite{NN-math}
 
-After this first step (the \textit{feedforward}) is done, the weights can be modified by comparing the prediction with the real output (the \textit{backpropagation}). The function that describes the error between them is called the Loss function and on possible form is the mean squared error function:
+After this first step (the \textit{feedforward}) is done, the weights can be modified by comparing the prediction with the real output (the \textit{backpropagation}). The function that describes the error between them is called the Loss function and one possible form is the mean squared error function:
 
 \begin{equation}
 	L(\hat{y},y)=\sum_{i}(\hat{y}_i-y_i)^2
@@ -50,7 +50,7 @@ As building a neural network from scratch gets complex very quickly, it is easie
 
 The network needs six nodes in the input layer for the input parameters and one node in the output layer for the prediction. In between, are two layers with decreasing numbers of nodes as this seems to give the best results. (Figure \ref{fig:neuralnetwork-graph})
 
-\begin{lstlisting}[language=Python,caption=the used model as Keras code,label=lst:model]
+\begin{lstlisting}[language=Python,caption=The used model as Keras code,label=lst:model]
 from keras import Sequential
 from keras.layers import Dense
 
@@ -90,10 +90,12 @@ To find the ideal parameters to use, the simulation data (excluding the data fro
 	
 \end{figure}
 
-After the training, the resulting model can be saved in a small \texttt{HDF5} file which can be used to evaluate the model very quickly (about \SI{100}{\milli\second} for \num{10000} interpolations).
+After the training, the resulting model is saved in a small \texttt{HDF5} file which can be used to evaluate the model very quickly (about \SI{100}{\milli\second} for \num{10000} interpolations).
 
 
 \subsection{Results}
+
+Figure \ref{fig:nnresults} \todo{text}
 
 \begin{figure}[h!] % also temporary
 	\centering

@@ -9,7 +9,7 @@ Of the three methods, the trained neural network has the highest mean squared er
 
 Another important aspect to compare is the interpolation speed. The neural network is able to give the 100 results in about \SI{4}{\milli\second} (after loading the trained model). RBF interpolation is still reasonably fast, taking about \SI{8.5}{\second} (\SI{85}{\milli\second} per interpolation). But as \texttt{griddata} expects a grid-based parameter space, it becomes really slow when adding the resimulation data with random parameters. A single interpolation takes about \SI{35}{\second} totaling to around an hour for all 99 test cases. Using only the original dataset brings the runtime down to around \SI{10}{\second}, but causes the results to be less accurate than all other methods. (first row in Table \ref{tab:comparison})
 
-\begin{table}
+\begin{table}[h]
 	\centering
 	\begin{tabular}{rcc}
 		                              & {mean squared error} & {mean error} \\

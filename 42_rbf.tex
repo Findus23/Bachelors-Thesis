@@ -49,7 +49,7 @@ or simply
 
 with $\Phi$ being a symmetric $n \times n $ matrix as $\left\|x_j-x_i\right\|=\left\|x_i-x_j\right\|$. There are many possibilities for the radial basis function $\phi(r)$. It can be for example linear ($r$), gaussian ($e^{-r^2}$) or multiquadric ($\sqrt{\left(\frac{r}{\epsilon}\right)^2 + 1}$) with $\epsilon$ being a constant that defaults to the approximate average distance between nodes.
 
-As an example, consider the three points $x_1=0$, $x_1=3$ and $x_1=5$ with $p(x_1)=0.2$, $p(x_2)=0.8$ and $p(x_3)=0.1$ and choose a gaussian function for $\phi$ we get the following:
+As an example, consider the three points $x_1=0$, $x_1=3$ and $x_1=5$ with $p(x_1)=0.2$, $p(x_2)=0.8$ and $p(x_3)=0.1$ and choose a gaussian function for $\phi$ to get the following:
 \begin{align}
 	\begin{bmatrix}
 		\phi(0) & \phi(3)  & \phi(5) \\
@@ -116,6 +116,8 @@ Applying the same method to a list of random points allows to interpolate their 
 The scipy function \texttt{scipy.interpolate.Rbf} allows directly interpolating a value similar to \texttt{griddata} in Section \ref{sec:griddata-implementation}. A difference in usage is that it only allows interpolating a single value, but as it is pretty quick it is possible to calculate multiple values sequentially.
 
 \subsection{Results}
+
+Figure \ref{fig:rbfresults} \todo{text}
 
 \begin{figure}[h!] % also temporary
 	\centering
