@@ -3,7 +3,7 @@
 \label{chapter:simulations}
 \section{Model}
 
-For a realistic model of two gravitationally colliding bodies the smooth particle hydrodynamics (\texttt{SPH}) code \texttt{miluphCUDA} as explained in \cite{Schaefer2016} is used. It is able to simulate brittle failure and the interaction between multiple materials. 
+For a realistic model of two gravitationally colliding bodies the smooth particle hydrodynamics (\texttt{SPH}) code \texttt{miluphCUDA} as explained in \cite{Schaefer2016} and \cite{miluphaCode} is used. It is able to simulate brittle failure and the interaction between multiple materials. 
 
 In the simulation two celestial bodies are placed far enough apart so that tidal forces can affect the collision (5 times the sum of the radii). Both objects consist of a core with the physical properties of basalt rocks and an outer mantle made of water ice. These two-body-collisions are similar to those that happen between protoplanets or the collision that created the Earth's Moon.\footcite{dvorakMoon}
 
@@ -12,24 +12,24 @@ To keep the simulation time short and make it possible to do many simulations wi
 \section{Parameters}
 \label{sec:parameters}
 
-Six parameters have been identified that have a major influence on the result of a two-body collision. All selected parameter ranges are inspired by the physical properties that occurred in collisions in a simulation of an early solar system.\footcite{CollisionParameters}
+Six parameters have been identified that have a major influence on the result of a two-body collision. All selected parameter ranges are inspired by the physical properties that occurred in collisions in a simulation of an early solar system.\footcite{CollisionParameters} (Table \ref{tab:first_simulation_parameters})
 
-\subsection{impact velocity}
+\subsection{Impact velocity}
 
 The collision velocity $v_0$ is defined in units of the mutual escape velocity $v_{esc}$ of the projectile and the target.\footcite{MaindlSummary} Simulations have been made from $v_0=1$ to $v_0=5$. As one expects, a higher velocity results in a stronger collision and more and smaller fragments.
 \begin{equation}
 	v_{esc}=\sqrt{\frac{2G(M_p+M_t)}{r_p+r_t}}
 \end{equation}
 
-\subsection{impact angle}
+\subsection{Impact angle}
 
 The impact angle is defined in a way that $\alpha=\ang{0}$ corresponds to a head-on collision and higher angles increase the chance of a hit-and-run encounter. The simulation parameters range from $\alpha=\ang{0}$ to $\alpha=\ang{60}$
 
-\subsection{target and projectile mass}
+\subsection{Target and projectile mass}
 
 The total masses in these simulations range from about two Ceres masses (\SI{1.88e+21}{\kilogram}) to about two earth masses (\SI{1.19e+25}{\kilogram}). In addition to the total mass $m$, the mass fraction between projectile and target $\gamma$ is defined. As the whole setup is symmetrical between the two bodies, only mass fractions below and equal to one have been considered.
 
-\subsection{water fraction of target and projectile}
+\subsection{Water fraction of target and projectile}
 
 The last two parameters are the mass fraction of the ice to the total mass of each of the bodies. To keep the numbers of parameter combinations and therefore required simulations low, only \SI{10}{\percent} and \SI{20}{\percent} are simulated in the first simulation set.
 
@@ -59,7 +59,7 @@ miluphcuda -N 20000 -I rk2_adaptive -Q 1e-4 -n 300  -a 0.5 -H -t 144.0 -f impact
 This simulation ran on the \texttt{amanki} server using a \texttt{Nvidia GTX 1080} taking about \SI{30}{\minute} per simulation as the \texttt{Nvidia GTX 1080} is the fastest consumer GPU for this simulation set in a comparison of 13 tested GPUs.\footcite{Dorninger} Of these 960 simulations, 822 succeed and were used in the analysis.
 
 
-\section{Post-Processing}
+\section{Post-processing}
 \label{sec:postprocessing}
 
 After the simulation the properties of the SPH particles needs to be analyzed. To do this, the \texttt{identify\_fragments} C program by Christoph Burger (part of the post-processing tools of \texttt{miluphCUDA}) uses a friends-of-friends algorithm to group the final particles into fragments. Afterwards \texttt{calc\_aggregates} calculates the mass of the two largest fragments together with their gravitationally bound fragments and its output is written into a simple text file (\texttt{aggregates.txt}).

@@ -26,7 +26,7 @@ Another method that is good at taking pairs of input and output values and then 
 
 The idea behind artificial neural networks is trying to emulate the functionality of neurons by having nodes that are connected to each others. The weights $w$ of these connections are modified during the training to represent the training data and can then be used to predict new results for input values not seen in the training data.
 
-Every neural network needs an input layer with as many nodes as input parameters and an output layer with a node for every output value. In between, there can be multiple hidden layers with an arbitrary amount of nodes. (Figure \ref{fig:neuralnetwork-general})
+Every neural network needs an input layer with as many nodes as input parameters and an output layer with a node for every output value. In between, there can be multiple hidden layers with an arbitrary number of nodes. (Figure \ref{fig:neuralnetwork-general})
 
 If we first only consider a single neuron, then on every iteration it calculates the sum over all input values multiplied with their weight $w$. Afterwards, an activation function $g$ is applied to the sum $z$ to get the prediction $\hat{y}$.
 
@@ -42,7 +42,7 @@ After this first step (the \textit{feedforward}) is done, the weights can be mod
 	L(\hat{y},y)=\sum_{i}(\hat{y}_i-y_i)^2
 \end{equation}
 
-To update the weights, the derivative of the Loss function with respect to the weights is calculated and added to the existing weights.\todo{more details?}\footcite{NN-python}
+To update the weights, the derivative of the Loss function with respect to the weights is calculated and added to the existing weights.\footcite{NN-python}
 
 \subsection{Implementation}
 
