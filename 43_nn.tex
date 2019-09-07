@@ -28,7 +28,7 @@ The idea behind artificial neural networks is trying to emulate the functionalit
 
 Every neural network needs an input layer with as many nodes as input parameters and an output layer with a node for every output value. In between, there can be multiple hidden layers with an arbitrary number of nodes. (Figure \ref{fig:neuralnetwork-general})
 
-If we first only consider a single neuron, then on every iteration it calculates the sum over all input values multiplied with their weight $w$. Afterwards, an activation function $g$ is applied to the sum $z$ to get the prediction $\hat{y}$.
+If we first only consider a single neuron, then on every iteration it calculates the sum over all input values multiplied with their weight $w$. Afterwards an activation function $g$ is applied to the sum $z$ to get the prediction $\hat{y}$.
 
 \begin{equation}
 	z=\sum_{i}w_ix_i \qquad \hat{y}=g(z)
