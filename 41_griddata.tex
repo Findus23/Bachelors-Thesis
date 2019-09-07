@@ -26,7 +26,9 @@ In one dimension, linear interpolation is pretty trivial. For example, let's ass
 	
 \end{figure}
 
-In two dimensions things get more complicated as we now have a set of points with $X$ and $Y$ coordinates (Figure \ref{fig:3dinterpolate-1}). One fast way to find the closest points to the point that should be interpolated is using Delaunay triangulation. This separates the space between the points into triangles while trying to maximize their smallest angle. Afterwards, the closest three points can be found very quickly by checking the nodes of the surrounding triangle  (Figure \ref{fig:3dinterpolate-2}). If we now again have a function $f(X,Y)$ similar to the one-dimensional example, we can create a unique plain through the three points and get the interpolated value for any pair of $X$ and $Y$ on this layer. (Figure \ref{fig:3dinterpolate-3})
+In two dimensions things get more complicated as we now have a set of points with $X$ and $Y$ coordinates (Figure \ref{fig:3dinterpolate-1}). One fast way to find the closest points to the point that should be interpolated is using Delaunay triangulation. This is a method to separate the space between the points into triangles while trying to maximize their smallest angle and to make sure no other point is inside the circumcircle of the triangles\footcite{Delaunay}. Connecting the centers of the circumcircles results in a Voronoi diagram.  
+
+Afterwards, the closest three points can be found very quickly by checking the nodes of the surrounding triangle  (Figure \ref{fig:3dinterpolate-2}). If we now again have a function $f(X,Y)$ similar to the one-dimensional example, we can create a unique plain through the three points and get the interpolated value for any pair of $X$ and $Y$ on this layer. (Figure \ref{fig:3dinterpolate-3})
 
 
 \begin{figure}[] % also temporary
@@ -50,7 +52,7 @@ In two dimensions things get more complicated as we now have a set of points wit
 
 
 
-This approach has the advantage that it can be extended in more than two dimensions by replacing the triangle in the Delaunay triangulation\todo{nebensatz mit Zitat} with an n-simplex in n dimensions. The \texttt{scipy.spatial.Delaunay} python function allows to quickly calculate it thanks to the \texttt{Qhull} library\footnote{\url{http://www.qhull.org/}}. One noticeable limitation of this method is that data can't be extrapolated. Therefore the possible output is limited to the convex hull of the input parameter space (as seen in Figure \ref{fig:3dinterpolate-2}).
+This approach has the advantage that it can be extended in more than two dimensions by replacing the triangle in the Delaunay triangulation with an n-simplex in n dimensions. The \texttt{scipy.spatial.Delaunay} python function allows to quickly calculate it thanks to the \texttt{Qhull} library\footnote{\url{http://www.qhull.org/}}. One noticeable limitation of this method is that data can't be extrapolated. Therefore the possible output is limited to the convex hull of the input parameter space (as seen in Figure \ref{fig:3dinterpolate-2}).
 
 \subsection{Implementation}
 \label{sec:griddata-implementation}
