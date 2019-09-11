@@ -82,7 +82,7 @@ Solving this linear matrix equation using \texttt{numpy.linalg.solve} gives us t
 \end{equation}
 
 Combined we get the following linear combination for the interpolated function $s(x)$ (Figure \ref{fig:rbf-1}):
-\begin{equation}
+\begin{equation}\label{eq:rbf}
 	s(x)=0.200\phi(\left\|x\right\|)+
 		0.798\phi(\left\|x-3\right\|)+
 		0.085\phi(\left\|x-5\right\|)
@@ -95,17 +95,17 @@ Combined we get the following linear combination for the interpolated function $
 	\begin{subfigure}[t]{0.5\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{images/rbf1.pdf}
-		\caption{Lorem ipsum}
+		\caption{The three functions making up the RBF interpolation from Equation \eqref{eq:rbf}}
 		\label{fig:rbf-1}
 	\end{subfigure}%
 	~ 
 	\begin{subfigure}[t]{0.5\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{images/rbf2.pdf}
-		\caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
+		\caption{15 points following a sinus-like function with one interpolated value  (\textcolor{Green}{\textbullet})}
 		\label{fig:rbf-2}
 	\end{subfigure}
-	\caption{Caption place holder}
+	\caption{Two examples for simple RBF interpolation in one dimension}
 	
 \end{figure}
 
@@ -113,11 +113,11 @@ Applying the same method to a list of random points allows to interpolate their 
 
 \subsection{Implementation}
 
-The scipy function \texttt{scipy.interpolate.Rbf} allows directly interpolating a value similar to \texttt{griddata} in Section \ref{sec:griddata-implementation}. A difference in usage is that it only allows interpolating a single value, but as it is pretty quick it is possible to calculate multiple values sequentially.
+The scipy function \texttt{scipy.interpolate.Rbf} allows directly interpolating a value similar to \texttt{griddata} in Section \ref{sec:griddata-implementation} while using the linear function as the Radial Basis Function ($\phi(r)=r$). A difference in usage is that it only allows interpolating a single value, but as it is pretty quick it is possible to calculate multiple values sequentially.
 
 \subsection{Results}
 
-Figure \ref{fig:rbfresults} \todo{text}
+The results from RBF interpolations can be seen in Figure \ref{fig:rbfresults}. It is far smoother with a gradient from \SIrange{0}{100}{\percent} from the top left to the bottom right corner. Only the lower mass (Figure \ref{fig:rbf1}) has a view outliers. Unlike griddata it is also possible to extrapolate to close values and still get realistic results.
 
 \begin{figure}[h!] % also temporary
 	\centering

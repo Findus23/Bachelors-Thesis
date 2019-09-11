@@ -3,10 +3,10 @@
 
 While this thesis focuses on the water retention after the collisions, the same methods can be applied to the fraction of basalt from the core of the two bodies that remains after the collision. Using the same parameters for interpolation and a separately trained model with the same parameters results in similar results as for water retention. When plotted just like before in Figure \ref{fig:mass_results}, one can see that the results are quite similar. The main difference is that on average there is a slightly higher core mass retention, which can be explained by the fact that weaker collisions might be strong enough to throw the outer water layer into space, but keep the core intact. In addition, it seems like the border between high and low core mass retention is smaller.\todo{better phrase}
 
-When applying the same comparison as described in Section \ref{sec:comparison} the interpolations seem to have a lower accuracy, but still RBF interpolation gives the best results considering slow speed of griddata.
+When applying the same comparison as described in Chapter \ref{sec:comparison} the interpolations seem to have a lower accuracy, but still RBF interpolation gives the best results considering slow speed of griddata.
 
 
-\begin{table}[h]
+\begin{table}
 	\centering
 	\begin{tabular}{rcc}
 		& {mean squared error} & {mean error} \\
@@ -61,6 +61,6 @@ When applying the same comparison as described in Section \ref{sec:comparison} t
 	\caption{Neural Network  with $m_{total}=\num{e24}$}
 	\label{fig:mass_nn2}
 \end{subfigure}
-	\caption{TODO}
+	\caption{}
 	\label{fig:mass_results}
 \end{figure}

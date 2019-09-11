@@ -67,7 +67,7 @@ model.fit(x, Y, epochs=200, validation_data=(x_test, Y_test))
 
 \subsection{Training}
 
-To find the ideal parameters to use, the simulation data (excluding the data from Section \ref{sec:comparison}) is split into two groups: The complete original set of simulations and \SI{80}{\percent} of the new simulation set is used to train the neural network while the remaining \SI{20}{\percent} are used for validation. This means that after every epoch the loss function is not only calculated for the training data, but also for the separate validation data (Figure \ref{fig:loss_val}). Finally, the model with the lowest loss on the validation data set was chosen (Listing \ref{lst:model}).
+To find the ideal parameters to use, the simulation data (excluding the data from Chapter \ref{sec:comparison}) is split into two groups: The complete original set of simulations and \SI{80}{\percent} of the new simulation set is used to train the neural network while the remaining \SI{20}{\percent} are used for validation. This means that after every epoch the loss function is not only calculated for the training data, but also for the separate validation data (Figure \ref{fig:loss_val}). Finally, the model with the lowest loss on the validation data set was chosen (Listing \ref{lst:model}).
 
 
 \begin{figure}[h] % also temporary
@@ -95,9 +95,9 @@ After the training, the resulting model is saved in a small \texttt{HDF5} file w
 
 \subsection{Results}
 
-Figure \ref{fig:nnresults} \todo{text}
+The output of the Neural Network (Figure \ref{fig:nnresults}) looks quite \todo{end sentence}
 
-\begin{figure}[h!] % also temporary
+\begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.5\textwidth}
 		\centering
@@ -115,3 +115,17 @@ Figure \ref{fig:nnresults} \todo{text}
 	\caption{Interpolation result using the trained neural network}
 	\label{fig:nnresults}
 \end{figure}
+
+% !TeX spellcheck = en_US
+\begin{table}
+	\centering
+	\begin{tabular}{rcc}
+		& {mean squared error} & {mean error} \\
+		griddata (only original data) &        0.014         &    0.070     \\
+		neural network &        0.010         &    0.069     \\
+		RBF &        0.008         &    0.057     \\
+		griddata &        0.005         &    0.046
+	\end{tabular}
+	\caption{Prediction accuracy for the different interpolation methods}
+	\label{tab:comparison}
+\end{table}
