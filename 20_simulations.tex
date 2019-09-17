@@ -50,7 +50,7 @@ The last two parameters are the mass fraction of the ice to the total mass of ea
 
 \section{Execution}\todo{think of a better title}
 
-In the first simulation run for every parameter combination from Table \ref{tab:first_simulation_parameters} a separate simulation has been started. First, the parameters and other configuration options are written in a \mbox{\texttt{simulation.input}} text file. Afterwards the relaxation program described in \cite[24\psqq]{Burger2018} generates relaxed initial conditions for all 20k particles and saves their state to \texttt{impact.0000}. Finally \texttt{miluphcuda} can be executed with the following arguments to simulate starting from this initial condition for 300 timesteps which each will be saved in a \texttt{impact.XXXX} file.
+In the first simulation run for every parameter combination from Table \ref{tab:first_simulation_parameters} a separate simulation has been started. First, the parameters and other configuration options are written in a \mbox{\texttt{simulation.input}} text file. Afterwards the relaxation program described in \cite[24\psqq]{Burger2018} generates relaxed initial conditions for all 20k particles and saves their state to \texttt{impact.0000}. Finally, \texttt{miluphcuda} can be executed with the following arguments to simulate starting from this initial condition for 300 timesteps which each will be saved in a \texttt{impact.XXXX} file.
 
 \begin{lstlisting}[language=bash,flexiblecolumns=false]
 miluphcuda -N 20000 -I rk2_adaptive -Q 1e-4 -n 300  -a 0.5 -H -t 144.0 -f impact.0000 -m material.cfg -s -g
@@ -64,7 +64,6 @@ This simulation ran on the \texttt{amanki} server using a \texttt{Nvidia GTX 108
 
 After the simulation the properties of the SPH particles needs to be analyzed. To do this, the \texttt{identify\_fragments} C program by Christoph Burger (part of the post-processing tools of \texttt{miluphCUDA}) uses a friends-of-friends algorithm to group the final particles into fragments. Afterwards \texttt{calc\_aggregates} calculates the mass of the two largest fragments together with their gravitationally bound fragments and its output is written into a simple text file (\texttt{aggregates.txt}).
 
-% This way, the mass retention (total mass of the two largest fragments compared to total mass of projectile and trget) and the water retention can be determined for every simulation result.
 
 \section{Resimulation}
 \label{sec:resimulation}

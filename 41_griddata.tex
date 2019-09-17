@@ -52,7 +52,7 @@ Afterwards, the closest three points can be found very quickly by checking the n
 
 
 
-This approach has the advantage that it can be extended in more than two dimensions by replacing the triangle in the Delaunay triangulation with an n-simplex in n dimensions. The \texttt{scipy.spatial.Delaunay} python function allows to quickly calculate it thanks to the \texttt{Qhull} library\footnote{\url{http://www.qhull.org/}}. One noticeable limitation of this method is that data can't be extrapolated. Therefore the possible output is limited to the convex hull of the input parameter space (as seen in Figure \ref{fig:3dinterpolate-2}).
+This approach has the advantage that it can be extended in more than two dimensions by replacing the triangle in the Delaunay triangulation with an n-simplex in n dimensions. The \texttt{scipy.spatial.Delaunay} python function allows to quickly calculate it thanks to the \texttt{Qhull} library\footnote{\url{http://www.qhull.org/}}. One noticeable limitation of this method is that data can't be extrapolated. Therefore, the possible output is limited to the convex hull of the input parameter space (as seen in Figure \ref{fig:3dinterpolate-2}).
 
 \subsection{Implementation}
 \label{sec:griddata-implementation}
