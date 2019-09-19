@@ -2,11 +2,11 @@
 
 \addchap{Abstract}
 
-To get a closer estimate on how much water remains after the collision of two protoplanets or asteroids covered in water, a total of 1375 SPH simulations have been conducted. Six parameters like impact velocity, angle and mass have been varied between the simulations to give estimations for many possible collision scenarios. To interpolate the resulting water retention fraction for collisions in between the simulations, the three methods gridbased linear interpolations, Radial Basis Functions and Artificial Neural Networks have been used. This allows to predict the remaining water for arbitrary collisions within the simulated parameter range.
+To get a closer estimate on how much water remains after the collision of two protoplanets or asteroids covered in water, a total of 1375 SPH simulations have been conducted. Six parameters like impact velocity, angle and mass have been varied between the simulations to estimate for many possible collision scenarios. To interpolate the resulting water retention fraction for collisions in between the simulations, the three methods gridbased linear interpolations, Radial Basis Functions and Artificial Neural Networks have been used. This allows to predict the remaining water for arbitrary collisions within the simulated parameter range.
 
 {\let\clearpage\relax \chapter{Introduction}\label{introduction}}
 
-One important question for planet formation is, how water got to the earth. The part of the protoplanetary disk closest to the sun was too hot to make it possible that water can condense on Earth during formation. And while there are theories that the region where ice is possible inside the snow-line moved during Earth's formation\footcite{snowline}, the most popular theory is that water moved inwards in the solar system through collisions of water-rich proto-planets.
+One important question for planet formation is how water got to the earth. The part of the protoplanetary disk closest to the sun was too hot to make it possible that water can condense on Earth during formation. And while there are theories that the region where ice is possible inside the snow-line moved during Earth's formation\footcite{snowline}, the most popular theory is that water moved inwards in the solar system through collisions of water-rich proto-planets.
 
 
 %\section{The perfect merging assumption}
@@ -16,5 +16,5 @@ To better understand how this process works, large n-body simulations over the l
 %\section{Some other heading}
 %\todo{find a name for this heading}
 
-To understand how exactly the water transport works, one has to find an estimation of the mass and water fractions that are retained during two-body simulations depending on the parameters of the impact.
-First, I will be shortly describing the simulation setup, the important parameters and the post-processing of the results (Chapter \ref{chapter:simulations}). Next I will summarize the results of the simulations and their properties (Chapter \ref{chapter:results}). In the main section I will then be describing three different approaches to interpolate and generalize these results for arbitrary collisions (Chapter \ref{chapter:interpolations}). 
+To understand how exactly the water transport works, one has to find an estimate of the mass and water fractions that are retained during two-body simulations depending on the parameters of the impact.
+First, I will be shortly describing the simulation setup, the important parameters and the post-processing of the results (Chapter \ref{chapter:simulations}). Next I will summarize the results of the simulations and their properties (Chapter \ref{chapter:results}). In the main section I will then be describing three different approaches to interpolate and generalize these results for arbitrary collisions (Chapter \ref{chapter:interpolations}). Finally I'll compare the three methods and show their advantages and disadvantages (Chapter \ref{sec:comparison}).
