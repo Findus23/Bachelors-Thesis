@@ -48,7 +48,7 @@ The last two parameters are the mass fraction of the ice to the total mass of ea
 	\label{tab:first_simulation_parameters}
 \end{table}
 
-\section{Execution}\todo{think of a better title}
+\section{Execution}
 
 In the first simulation run for every parameter combination from Table \ref{tab:first_simulation_parameters} a separate simulation has been started. First, the parameters and other configuration options are written in a \mbox{\texttt{simulation.input}} text file. Afterwards the relaxation program described in \cite[24\psqq]{Burger2018} generates relaxed initial conditions for all 20k particles and saves their state to \texttt{impact.0000}. Finally, \texttt{miluphcuda} can be executed with the following arguments to simulate starting from this initial condition for 300 timesteps which each will be saved in a \texttt{impact.XXXX} file.
 
